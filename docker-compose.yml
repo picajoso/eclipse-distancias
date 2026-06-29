@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  eclipse-app:
+    build: .
+    container_name: eclipse-app
+    restart: always
+    environment:
+      - ECLIPSE_ORIGIN_NAME=Madrid
+      - ECLIPSE_ORIGIN_LAT=40.4168
+      - ECLIPSE_ORIGIN_LON=-3.7038
+      - ECLIPSE_BUFFER_MIN=30
+      # Descomenta e introduce tu clave si la tienes
+      # - ORS_API_KEY=tu_api_key_de_openrouteservice
+    expose:
+      - "8123"
+    networks:
+      - web-network
+
+networks:
+  web-network:
+    name: main-network # Cambia esto por el nombre de la red Docker en la que corre wordpress-nginx (ej: nginx-proxy, reverse-proxy, etc.)
+    external: true
