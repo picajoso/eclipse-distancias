@@ -9,9 +9,8 @@ from __future__ import annotations
 import time
 from typing import Any
 
-import httpx
-
 from .config import DATA_DIR  # noqa: F401  (DATA_DIR reservado para caché en disco futura)
+from .httpclient import get_client
 
 OVERPASS_URLS = [
     "https://maps.mail.ru/osm/tools/overpass/api/interpreter",  # estable en pruebas
@@ -20,6 +19,7 @@ OVERPASS_URLS = [
 ]
 USER_AGENT = "ruta-eclipse-2026/0.1 (planificador de viaje al eclipse; +https://www.openstreetmap.org)"
 CACHE_TTL_S = 3600
+MAX_CACHE_SIZE = 500  # #3: la caché no crece sin límite (FIFO)
 _cache: dict[tuple, tuple[float, dict]] = {}
 
 
@@ -52,7 +52,7 @@ def _post(query: str) -> dict:
     last_exc: Exception | None = None
     for url in OVERPASS_URLS:
         try:
-            r = httpx.post(url, data={"data": query}, headers={"User-Agent": USER_AGENT}, timeout=60.0)
+            r = get_client().post(url, data={"data": query}, headers={"User-Agent": USER_AGENT}, timeout=60.0)
             r.raise_for_status()
             return r.json()
         except Exception as exc:  # prueba el siguiente endpoint
@@ -95,5 +95,7 @@ def get_pois(lat: float, lon: float, radius_m: int = 8000) -> dict[str, Any]:
         "query": {"lat": lat, "lon": lon, "radius_m": radius_m},
         "features": features,
     }
+    if len(_cache) >= MAX_CACHE_SIZE:
+        _cache.pop(next(iter(_cache)))  # FIFO: descarta la entrada más antigua
     _cache[key] = (time.monotonic(), geojson)
     return geojson

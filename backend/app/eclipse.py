@@ -15,9 +15,8 @@ from datetime import datetime
 from typing import Any
 from zoneinfo import ZoneInfo
 
-import httpx
-
 from .config import ECLIPSE_DATE
+from .httpclient import get_client
 
 OPALE_URL = "https://opale.imcce.fr/api/v1/phenomena/eclipses/10/2026-08-12"
 UTC = ZoneInfo("UTC")
@@ -26,7 +25,7 @@ MADRID_TZ = ZoneInfo("Europe/Madrid")  # CEST (UTC+2) en agosto
 
 def fetch_opale(lat: float, lon: float, *, timeout: float = 25.0) -> dict[str, Any]:
     """Llamada cruda a OPALE para un observador en (lat, lon)."""
-    r = httpx.get(OPALE_URL, params={"observer": f"{lat},{lon}"}, timeout=timeout)
+    r = get_client().get(OPALE_URL, params={"observer": f"{lat},{lon}"}, timeout=timeout)
     r.raise_for_status()
     return r.json()
 
@@ -43,7 +42,7 @@ def _parse_hms(s: str | None) -> int | None:
     if not s:
         return None
     h, m, rest = s.split(":")
-    return int(h) * 3600 + int(m) * 60 + int(float(rest))
+    return int(h) * 3600 + int(m) * 60 + round(float(rest))
 
 
 def _evt_dt(events: dict[str, Any], key: str) -> datetime | None:

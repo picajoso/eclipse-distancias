@@ -15,9 +15,8 @@ import json
 from functools import lru_cache
 from math import asin, cos, radians, sin, sqrt
 
-import httpx
-
 from . import eclipse
+from .httpclient import get_client
 from .config import (
     DATA_DIR,
     ORS_API_KEY,
@@ -40,7 +39,7 @@ def _osrm(
     if profile != "driving":
         profile = "driving"
     url = f"{OSRM_BASE}/route/v1/{profile}/{olon},{olat};{dlon},{dlat}"
-    r = httpx.get(url, params={"overview": "full", "geometries": "geojson"}, timeout=timeout)
+    r = get_client().get(url, params={"overview": "full", "geometries": "geojson"}, timeout=timeout)
     r.raise_for_status()
     j = r.json()
     if j.get("code") != "Ok" or not j.get("routes"):
@@ -61,7 +60,7 @@ def _ors(
     headers = {"Authorization": ORS_API_KEY, "Content-Type": "application/json"}
     url = f"{ORS_BASE}/v2/directions/{profile}"
     body = {"coordinates": [[olon, olat], [dlon, dlat]], "geometry": "true"}
-    r = httpx.post(url, headers=headers, json=body, timeout=timeout)
+    r = get_client().post(url, headers=headers, json=body, timeout=timeout)
     r.raise_for_status()
     j = r.json()
     rt = j["routes"][0]
@@ -159,7 +158,7 @@ def destinations_from(lat: float, lon: float, max_km: float = 450.0, min_found: 
         ranked = [t for _, t in hav[:min_found]]
     coords = ";".join([f"{lon},{lat}"] + [f"{t[2]},{t[1]}" for t in ranked])
     url = f"{OSRM_BASE}/table/v1/driving/{coords}?sources=0&annotations=distance,duration"
-    r = httpx.get(url, timeout=60.0)
+    r = get_client().get(url, timeout=60.0)
     r.raise_for_status()
     j = r.json()
     if j.get("code") != "Ok" or "distances" not in j:
@@ -171,6 +170,8 @@ def destinations_from(lat: float, lon: float, max_km: float = 450.0, min_found: 
             "name": nm, "lat": tlat, "lon": tlon, "dur": int(dur), "pop": int(pop),
             "driving_km": round(dists[i + 1] / 1000), "driving_min": round(durs[i + 1] / 60),
         })
+    if not out:  # #5: la tabla OSRM no devolvió destinos -> evitar min()/max() sobre vacío
+        return []
     # Puntuación: PRIORIDA la zona de totalidad absoluta (duración) y, dentro de ella,
     # la cercanía. Así un pueblo con totalidad profunda (p.ej. 100s) se antepone a uno
     # de borde (50-60s) aunque este esté más cerca, sin caer en sitios lejanísimos

@@ -349,9 +349,11 @@ for (const [id, lyr] of [["layer-obsc", () => obscLayer], ["layer-total", () => 
 }
 // Selector de origen (ciudades principales + búsqueda OSM para el resto)
 const originInput = document.getElementById("origin-input");
+let lastCommittedValue = "";  // #4: evita doble petición (Enter + blur->change)
 function commitOrigin() {
   const q = (originInput.value || "").trim();
-  if (!q) return;
+  if (!q || q === lastCommittedValue) return;  // ignora duplicados
+  lastCommittedValue = q;
   const opt = document.querySelector(`#es-cities option[value="${CSS.escape(q)}"]`);
   if (opt && opt.dataset.lat) { setOrigin(opt.value, +opt.dataset.lat, +opt.dataset.lon); return; }
   fetch(`${API}/geocode?q=${encodeURIComponent(q)}`)

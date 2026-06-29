@@ -12,13 +12,13 @@ from __future__ import annotations
 
 import json
 
-import httpx
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from . import eclipse, overlays, pois, routes
 from .config import DATA_DIR, FRONTEND_DIR, ORIGIN_LAT, ORIGIN_LON, ORIGIN_NAME, VALIDATION_POINTS
+from .httpclient import get_client
 
 app = FastAPI(title="Ruta al Eclipse 2026", version="0.1.0")
 
@@ -102,7 +102,7 @@ def destinations(from_lat: float = ORIGIN_LAT, from_lon: float = ORIGIN_LON) -> 
 def geocode(q: str = Query(..., min_length=2)):
     """Geocodifica una localidad de España (Nominatim / OpenStreetMap)."""
     try:
-        r = httpx.get(
+        r = get_client().get(
             "https://nominatim.openstreetmap.org/search",
             params={"q": q, "format": "json", "countrycodes": "es", "limit": 5},
             headers={"User-Agent": "ruta-eclipse-2026/0.1 (eclipse trip planner)"},
