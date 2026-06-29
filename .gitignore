@@ -1,0 +1,20 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Entorno
+.env
+*.log
+
+# Datos pesados descargados (se regeneran con scripts/)
+data/*.gpkg
+data/*.tif
+data/*.zip
+Eclipses.gpkg
+*.gpkg
+
+# OS
+.DS_Store

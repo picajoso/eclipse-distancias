@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruta al Eclipse 2026 · desde Madrid</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="panel">
+      <header>
+        <h1>🌞 Eclipse 12-08-2026</h1>
+        <div class="origin-box">
+          <label for="origin-input">Origen</label>
+          <input id="origin-input" list="es-cities" value="Madrid" placeholder="Busca tu ciudad…" autocomplete="off" />
+          <datalist id="es-cities">
+            <option value="Madrid" data-lat="40.4168" data-lon="-3.7038"></option>
+            <option value="Barcelona" data-lat="41.3851" data-lon="2.1734"></option>
+            <option value="Valencia" data-lat="39.4699" data-lon="-0.3763"></option>
+            <option value="Sevilla" data-lat="37.3886" data-lon="-5.9823"></option>
+            <option value="Zaragoza" data-lat="41.6488" data-lon="-0.8891"></option>
+            <option value="Málaga" data-lat="36.7213" data-lon="-4.4214"></option>
+            <option value="Murcia" data-lat="37.9922" data-lon="-1.1307"></option>
+            <option value="Bilbao" data-lat="43.2630" data-lon="-2.9350"></option>
+            <option value="Alicante" data-lat="38.3452" data-lon="-0.4810"></option>
+            <option value="Córdoba" data-lat="37.8882" data-lon="-4.7794"></option>
+            <option value="Valladolid" data-lat="41.6523" data-lon="-4.7246"></option>
+            <option value="Vigo" data-lat="42.2406" data-lon="-8.7207"></option>
+            <option value="Gijón" data-lat="43.5357" data-lon="-5.6615"></option>
+            <option value="A Coruña" data-lat="43.3623" data-lon="-8.4115"></option>
+            <option value="Granada" data-lat="37.1773" data-lon="-3.5986"></option>
+            <option value="Oviedo" data-lat="43.3619" data-lon="-5.8454"></option>
+            <option value="San Sebastián" data-lat="43.3183" data-lon="-1.9817"></option>
+            <option value="Pamplona" data-lat="42.8125" data-lon="-1.6464"></option>
+            <option value="Santander" data-lat="43.4625" data-lon="-3.8050"></option>
+            <option value="Logroño" data-lat="42.4632" data-lon="-2.4449"></option>
+            <option value="Cádiz" data-lat="36.5271" data-lon="-6.2886"></option>
+            <option value="Salamanca" data-lat="40.9701" data-lon="-5.6635"></option>
+            <option value="Burgos" data-lat="42.3439" data-lon="-3.6969"></option>
+            <option value="León" data-lat="42.5987" data-lon="-5.6671"></option>
+            <option value="Badajoz" data-lat="38.8797" data-lon="-6.9700"></option>
+            <option value="Cáceres" data-lat="39.4753" data-lon="-6.3716"></option>
+            <option value="Lleida" data-lat="41.6176" data-lon="0.6218"></option>
+            <option value="Tarragona" data-lat="41.1189" data-lon="1.2445"></option>
+          </datalist>
+        </div>
+        <div id="origin-eclipse" class="origin-notice"></div>
+      </header>
+
+      <section class="card" id="route-card">
+        <h2>Trayecto</h2>
+        <div id="route-empty" class="muted">Pulsa el mapa o un destino para calcular la ruta.</div>
+        <div id="route-info" hidden></div>
+      </section>
+
+      <section class="card">
+        <h2 id="dest-title">Mejores destinos desde Madrid</h2>
+        <p class="muted small">Ordenadas por <b>zona de totalidad absoluta</b> (duración) y luego cercanía. Se omiten totalidades muy breves (&lt;50s) y pedanías pequeñas. ⭐ = mejor totalidad accesible.</p>
+        <ul id="destinations" class="dest-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Servicios cerca del destino</h2>
+        <label class="chk"><input type="checkbox" id="pois-toggle" /> Miradores, parkings y hoteles (8 km)</label>
+        <p class="muted small">Actívalo tras elegir destino. Vía OpenStreetMap.</p>
+      </section>
+
+      <section class="card">
+        <h2>Capas del eclipse (IGN)</h2>
+        <label class="chk"><input type="checkbox" id="layer-obsc" checked /> Oscur. parcial (%)</label>
+        <label class="chk"><input type="checkbox" id="layer-total" checked /> Franja de totalidad + duración</label>
+        <p class="muted small">Datos oficiales del IGN. El 100% real solo en la franja; Madrid es 97,5%.</p>
+      </section>
+
+      <section class="card legend">
+        <h2>Leyenda</h2>
+        <div><span class="dot total"></span> Totalidad (corona visible)</div>
+        <div><span class="dot partial"></span> Parcial profundo (~99%)</div>
+        <div><span class="dot origin"></span> Origen (Madrid)</div>
+        <p class="muted small">El Sol estará muy bajo (≈8°) al WNW durante la totalidad (~20:28 CEST): busca horizonte oeste despejado.</p>
+      </section>
+    </aside>
+
+    <main id="map"></main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

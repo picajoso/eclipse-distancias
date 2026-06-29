@@ -1,0 +1,213 @@
+{
+    "link": {
+        "self": "https://opale.imcce.fr/api/v1/phenomena/eclipses/10/gregorian,2026-08-12?observer=42.343900,-3.696900,0.000000"
+    },
+    "request": {
+        "calendar": "gregorian",
+        "date": "2026-08-12",
+        "ephemerids": [
+            "INPOP19A"
+        ],
+        "frame": "TrueOfDate",
+        "nbd": 1,
+        "observer": [
+            42.3439,
+            -3.6969
+        ],
+        "tag": "eclipses_default",
+        "timescale": "UTC"
+    },
+    "response": {
+        "calendar": "gregorian",
+        "data": [
+            {
+                "calendarDate": "2026-08-12",
+                "duration": {
+                    "penumbral": "01:48:20.2",
+                    "umbral": "00:01:48.0"
+                },
+                "events": {
+                    "P1": {
+                        "Moon": {
+                            "DEC": 15.06065,
+                            "RA": 9.4634,
+                            "azimuth": 274.02472,
+                            "elevation": 18.21638,
+                            "parallax": 0.99594,
+                            "radius": 0.27291
+                        },
+                        "Sun": {
+                            "DEC": 14.80244,
+                            "RA": 9.49579,
+                            "azimuth": 273.49757,
+                            "elevation": 18.40797,
+                            "parallax": 0.00241,
+                            "radius": 0.26296
+                        },
+                        "UT1-TT": -69.148,
+                        "date": "2026-08-12T17:33:24",
+                        "location": null,
+                        "p": 298.86947,
+                        "zenith": 248.93316
+                    },
+                    "P4": {
+                        "Moon": {
+                            "DEC": 14.53535,
+                            "RA": 9.53326,
+                            "azimuth": 290.74801,
+                            "elevation": -0.92098,
+                            "parallax": 0.99528,
+                            "radius": 0.27117
+                        },
+                        "Sun": {
+                            "DEC": 14.77943,
+                            "RA": 9.50052,
+                            "azimuth": 291.25518,
+                            "elevation": -1.08875,
+                            "parallax": 0.00241,
+                            "radius": 0.26296
+                        },
+                        "UT1-TT": -69.148,
+                        "date": "2026-08-12T19:21:44",
+                        "location": null,
+                        "p": 117.12918,
+                        "zenith": 71.51987
+                    },
+                    "U1": {
+                        "Moon": {
+                            "DEC": 14.79357,
+                            "RA": 9.4976,
+                            "azimuth": 282.44777,
+                            "elevation": 8.3405,
+                            "parallax": 0.99561,
+                            "radius": 0.27202
+                        },
+                        "Sun": {
+                            "DEC": 14.79076,
+                            "RA": 9.49819,
+                            "azimuth": 282.43986,
+                            "elevation": 8.34506,
+                            "parallax": 0.00241,
+                            "radius": 0.26296
+                        },
+                        "UT1-TT": -69.148,
+                        "date": "2026-08-12T18:28:24",
+                        "location": null,
+                        "p": 108.06284,
+                        "zenith": 59.58586
+                    },
+                    "U4": {
+                        "Moon": {
+                            "DEC": 14.78483,
+                            "RA": 9.49876,
+                            "azimuth": 282.7233,
+                            "elevation": 8.02179,
+                            "parallax": 0.9956,
+                            "radius": 0.27199
+                        },
+                        "Sun": {
+                            "DEC": 14.79038,
+                            "RA": 9.49827,
+                            "azimuth": 282.73228,
+                            "elevation": 8.02017,
+                            "parallax": 0.00241,
+                            "radius": 0.26296
+                        },
+                        "UT1-TT": -69.148,
+                        "date": "2026-08-12T18:30:12",
+                        "location": null,
+                        "p": 307.90431,
+                        "zenith": 259.50097
+                    },
+                    "greatest": {
+                        "Moon": {
+                            "DEC": 14.78919,
+                            "RA": 9.49818,
+                            "azimuth": 282.58602,
+                            "elevation": 8.18051,
+                            "parallax": 0.9956,
+                            "radius": 0.27201
+                        },
+                        "Sun": {
+                            "DEC": 14.79057,
+                            "RA": 9.49823,
+                            "azimuth": 282.58658,
+                            "elevation": 8.18197,
+                            "parallax": 0.00241,
+                            "radius": 0.26296
+                        },
+                        "UT1-TT": -69.148,
+                        "date": "2026-08-12T18:29:18",
+                        "location": null,
+                        "p": 207.48817,
+                        "zenith": 159.04795
+                    }
+                },
+                "link": {
+                    "image": "https://opale.imcce.fr/api/v1/phenomena/eclipses/10/gregorian,2026-08-12?observer=42.343900,-3.696900,0.000000&format=image",
+                    "self": "https://opale.imcce.fr/api/v1/phenomena/eclipses/10/gregorian,2026-08-12?observer=42.343900,-3.696900,0.000000",
+                    "video": "https://opale.imcce.fr/api/v1/phenomena/eclipses/10/gregorian,2026-08-12?observer=42.343900,-3.696900,0.000000&format=video"
+                },
+                "magnitude": 1.0344,
+                "obscuration": 100.0,
+                "physicalData": {
+                    "Earth": {
+                        "inverseFlattening": 298.257223563,
+                        "radius": 6378.137
+                    },
+                    "Moon": {
+                        "radius": 1738.091
+                    },
+                    "Sun": {
+                        "radius": 695700.0
+                    }
+                },
+                "type": "ObserverTotalEclipse",
+                "visibilityLines": null,
+                "visibilityPaths": null
+            }
+        ],
+        "description": {
+            "calendarDate": "Day of the greatest event of the solar eclipse",
+            "duration.partial": "Interval in HH:MM:SS between the beginning (P1) and the end (P4) of the partial phase",
+            "duration.total": "Interval in HH:MM:SS between the beginning (U1) and the end (U4) of the total or annular or hybrid phase",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).DEC": "Declination of the body at time of the event",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).RA": "Right ascension of the body at time of the event",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).azimuth": "Azimuth from the North of the body of the body at time of the event",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).elevation": "Elevation above the horizon of the body at the time of the event (without refraction)",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).parallax": "Equatorial horizontal parallax of the body at time of the event",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).radius": "Apparent angular radius of the body at time of the event",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).Moon.centerOfFigure.deltaDEC": "Offset in declination of the vector 'center of mass' -> 'center of figure' of the body at time of the event",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).Moon.centerOfFigure.deltaRA": "Offset in Right ascension of the vector 'center of mass' -> 'center of figure' of the body at time of the event",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).UT1-TT": "Difference between UT1 and TT at time of the event, expressed in second",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).date": "Instant of the event",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).location": "Location on the Earth seeing the event",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).p": "Position angle of contact on the limb of the Moon measured eastwards from celestial north",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).zenith": "Position angle of contact on the limb of the Moon measured eastwards from the zenith",
+            "magnitude": "Fraction of the linear diameter of the Sun covered by the Moon at the greatest event",
+            "obscuration": "Percentage of the area of the apparent solar disk covered by the Moon at the greatest event",
+            "physicalData.(Sun|Moon|Earth).radius": "Equatorial radius of the body",
+            "physicalData.Earth.inverseFlattening": "Inverse of the flattening of the Earth's ellipsoid",
+            "type": "Type of the solar eclipse",
+            "visibilityLines": "Curves and limits of the eclipse",
+            "visibilityPaths": "Paths of the eclipse"
+        },
+        "timescale": "UTC",
+        "unit": {
+            "duration.partial": "HMS",
+            "duration.total": "HMS",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).DEC": "Deg180",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).RA": "Hour24",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).azimuth": "Deg360",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).elevation": "Deg180",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).parallax": "Deg360",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).(Sun|Moon).radius": "Deg360",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).Moon.centerOfFigure.deltaDEC": "Arcsec",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).Moon.centerOfFigure.deltaRA": "Arcsec",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).p": "Deg360",
+            "events.(greatest|P1|U1|C1|U2|P2|P3|U3|C2|U4|P4).zenith": "Deg360",
+            "events.(greatest|P1|U1|U2|U3|U4|P2).UT1-TT": "Second",
+            "physicalData.(Sun|Moon|Earth).radius": "Km"
+        }
+    }
+}

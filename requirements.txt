@@ -1,0 +1,13 @@
+# Backend (MVP)
+fastapi>=0.115
+uvicorn>=0.30
+httpx>=0.27
+
+# Tests
+pytest>=8.0
+
+# --- Fases posteriores (descomentar al llegar a ellas) ---------------------
+geopandas>=1.0         # ingesta GeoPackage IGN
+pyogrio>=0.9           # backend de lectura rápido para geopandas
+shapely>=2.0
+# skyfield>=1.0.6        # motor de eclipse local (H4)
