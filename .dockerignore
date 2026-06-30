@@ -1,0 +1,33 @@
+# No enviar al daemon de Docker como build context (acelera los builds).
+# El Dockerfile solo copia backend/ data/ frontend/, pero sin esto igualmente
+# se transfiere .venv (257 MB), .git, etc.
+
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+.git/
+.gitignore
+.github/
+
+# Datos pesados descargables (no se usan en runtime: los .geojson ya están pre-calculados)
+Eclipses.gpkg
+*.gpkg
+data/*.tif
+data/*.zip
+
+# Scripts de generación y tests (no se copian a la imagen)
+scripts/
+tests/
+
+*.log
+.env
+.env.*
+.DS_Store
+README.md
+Dockerfile
+docker-compose.yml
