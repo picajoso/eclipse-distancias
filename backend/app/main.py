@@ -20,12 +20,35 @@ from . import eclipse, overlays, pois, routes
 from .config import DATA_DIR, FRONTEND_DIR, ORIGIN_LAT, ORIGIN_LON, ORIGIN_NAME, VALIDATION_POINTS
 from .httpclient import get_client
 
-app = FastAPI(title="Ruta al Eclipse 2026", version="0.1.0")
+import os
 
-# CORS abierto para desarrollo (frontend estático en otro origen).
+IS_PROD = os.getenv("ECLIPSE_ENV", "development").lower() == "production"
+
+app = FastAPI(
+    title="Ruta al Eclipse 2026",
+    version="0.1.0",
+    docs_url=None if IS_PROD else "/docs",
+    redoc_url=None if IS_PROD else "/redoc",
+    openapi_url=None if IS_PROD else "/openapi.json"
+)
+
+# CORS restringido en producción, abierto en desarrollo local
+if IS_PROD:
+    ALLOWED_ORIGINS = [
+        "https://eclipse.javipas.com",
+    ]
+else:
+    ALLOWED_ORIGINS = [
+        "http://localhost",
+        "http://localhost:8123",
+        "http://127.0.0.1",
+        "http://127.0.0.1:8123",
+    ]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )

@@ -6,6 +6,7 @@ services:
     container_name: eclipse-app
     restart: always
     environment:
+      - ECLIPSE_ENV=production
       - ECLIPSE_ORIGIN_NAME=Madrid
       - ECLIPSE_ORIGIN_LAT=40.4168
       - ECLIPSE_ORIGIN_LON=-3.7038

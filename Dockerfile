@@ -16,6 +16,12 @@ COPY backend/ ./backend/
 COPY data/ ./data/
 COPY frontend/ ./frontend/
 
+# Crear un usuario del sistema sin privilegios y ajustar permisos de lectura/ejecución
+RUN groupadd -r appuser && useradd -r -g appuser appuser && \
+    chown -R appuser:appuser /app
+
+USER appuser
+
 EXPOSE 8123
 
 CMD ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8123"]
